@@ -2,7 +2,7 @@ resource "azurerm_monitor_data_collection_rule" "this" {
   name                = local.dcr_name
   resource_group_name = var.resource_group_name
   location            = var.location
-  kind                = "AgentDirectToStore"
+  kind                = "Linux"
 
   data_sources {
     syslog {
@@ -14,10 +14,9 @@ resource "azurerm_monitor_data_collection_rule" "this" {
   }
 
   destinations {
-    storage_blob_direct {
-      storage_account_id = var.storage_account_id
-      container_name     = var.storage_container_name
-      name               = "syslogDestination"
+    log_analytics {
+      workspace_resource_id = var.log_analytics_workspace_id
+      name                  = "syslogDestination"
     }
   }
 
@@ -28,5 +27,7 @@ resource "azurerm_monitor_data_collection_rule" "this" {
 
   tags = local.common_tags
 
-  depends_on = [azurerm_virtual_machine_extension.ama, azurerm_role_assignment.ama_storage_writer]
+  depends_on = [
+    azurerm_virtual_machine_extension.ama
+  ]
 }
