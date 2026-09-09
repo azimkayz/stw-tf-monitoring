@@ -44,3 +44,8 @@ variable "tags" {
   default     = {}
   description = "Optional tags to apply to created resources."
 }
+
+variable "vm_identity_principal_id" {
+  type        = string
+  description = "Principal ID of the VM's system-assigned managed identity, granted write access to the storage account."
+}

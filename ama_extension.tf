@@ -10,5 +10,16 @@ resource "azurerm_virtual_machine_extension" "ama" {
   type_handler_version       = "1.29"
   auto_upgrade_minor_version = true
 
+  settings = jsonencode({
+    authentication = {
+      managedIdentity = {
+        identifier-name  = "mi_res_id"
+        identifier-value = var.vm_id
+      }
+    }
+  })
+
   tags = local.common_tags
+
+  depends_on = [azurerm_role_assignment.ama_storage_writer]
 }
