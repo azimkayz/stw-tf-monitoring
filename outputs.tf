@@ -8,7 +8,7 @@ output "dcr_association_id" {
   description = "The resource ID of the DCR-to-VM association — proof this requirement was satisfied."
 }
 
-output "role_assignment_id" {
-  description = "Resource ID of the Storage Blob Data Contributor role assignment."
-  value       = azurerm_role_assignment.ama_storage_writer.id
-}
+# Commented out because the direct storage role assignment was removed:
+# output "role_assignment_id" {
+#   description = "Resource ID of the Storage Blob Data Contributor role assignment."
+#   value       = azurerm_role_assignment.ama_storage_writer.id
