@@ -27,6 +27,7 @@ This module has two separate upstream dependencies:
 ## Naming — worked example
 
 project_name = "projecta", environment = "prod":
+`dcr-projecta-prod-southafricanorth`:
 
 
 ## Usage
